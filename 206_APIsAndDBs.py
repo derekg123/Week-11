@@ -92,7 +92,11 @@ umich_tweets = get_user_tweets("umich")
 # mentioned in the umich timeline, that Twitter user's info should be
 # in the Users table, etc.
 
+conn = sqlite3.connect('206_APIsAndDBs.sqllite')
+cur = conn.cursor()
 
+cur.execute('DROP TABLE IF EXISTS Tweets')
+cur.execute('CREATE TABLE 'Tweets'('tweet_id' TEXT, 'user_posted' INTEGER, 'time_posted' DATETIME, 'retweets' INTEGER, PRIMARY KEY('tweet_id'))')
 
 ## You should load into the Tweets table:
 # Info about all the tweets (at least 20) that you gather from the
